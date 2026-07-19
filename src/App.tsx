@@ -7,6 +7,7 @@ import { LiveActivity } from './components/LiveActivity'
 import { ProjectCard } from './components/ProjectCard'
 import { Reveal } from './components/Reveal'
 import { principles, projects, skillGroups } from './data/portfolio'
+import { liveActivityEnabled } from './config'
 
 function ScrollProgress() {
   const [progress, setProgress] = useState(0)
@@ -202,13 +203,13 @@ function App() {
           </Reveal>
         </section>
 
-        <LiveActivity />
+        {liveActivityEnabled && <LiveActivity />}
 
         <section className="contact-section section" id="contact" aria-labelledby="contact-title">
           <div className="contact-circuit" aria-hidden="true" />
           <div className="shell contact-inner">
             <Reveal>
-              <p className="mono-label">05 / Contact</p>
+              <p className="mono-label">{liveActivityEnabled ? '05' : '04'} / Contact</p>
               <h2 id="contact-title">Have a product to build or a team I could help?</h2>
               <p>Tell me what you are working on, where it is stuck, and what a good outcome looks like.</p>
               <div className="contact-actions">

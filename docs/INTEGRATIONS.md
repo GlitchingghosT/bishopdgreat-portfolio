@@ -2,6 +2,8 @@
 
 The portfolio has two optional live-data cards. Neither integration invents fallback statistics or tracks: when a connection is absent, the UI says setup is pending.
 
+The section is disabled by default. After both integrations are configured, set `VITE_ENABLE_LIVE_ACTIVITY=true` in Vercel and redeploy. Until then, neither the Activity navbar link nor the section is rendered.
+
 ## WakaTime coding hours
 
 WakaTime explicitly recommends **not** using a secret API key on a public website. This portfolio uses its public embeddable JSON share through a same-origin normalizing function.

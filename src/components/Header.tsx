@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { BrandMark } from './BrandMark'
 import { ArrowUpRight, CloseIcon, MenuIcon } from './Icons'
 import { ThemeToggle } from './ThemeToggle'
+import { liveActivityEnabled } from '../config'
 
 const links = [
   { href: '#work', label: 'Work' },
   { href: '#about', label: 'About' },
   { href: '#approach', label: 'Approach' },
-  { href: '#activity', label: 'Activity' },
+  ...(liveActivityEnabled ? [{ href: '#activity', label: 'Activity' }] : []),
   { href: '#contact', label: 'Contact' },
 ]
 

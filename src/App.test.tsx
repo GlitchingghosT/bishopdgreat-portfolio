@@ -18,6 +18,9 @@ describe('portfolio', () => {
     expect(screen.getByRole('heading', { name: 'Around the Globe' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Calculator' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Space Tourism Explorer' })).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: 'Activity' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: 'Coding hours' })).not.toBeInTheDocument()
+    expect(screen.getByText('04 / Contact')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Emmanuel Nwachinemere' })).toHaveAttribute(
       'src',
       '/emmanuel-nwachinemere.webp',

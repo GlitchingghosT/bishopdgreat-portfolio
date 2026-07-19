@@ -9,7 +9,7 @@ The visual system continues the dark circuit-cross identity used on my GitHub pr
 - Responsive layouts for mobile, tablet, laptop, and wide desktop screens
 - Persistent light and dark themes with system-preference support
 - Selected project cards with verified source and live-demo links
-- Live WakaTime coding hours and Spotify current/recent track cards
+- Optional, feature-gated WakaTime coding hours and Spotify current/recent track cards
 - A TaskDuty architecture panel that does not imply the app is deployed
 - Accessible mobile navigation, skip link, focus states, semantic landmarks, and reduced-motion support
 - Visible-by-default scroll content with animation as progressive enhancement
