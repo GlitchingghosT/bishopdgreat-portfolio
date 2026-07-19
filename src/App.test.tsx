@@ -8,11 +8,15 @@ describe('portfolio', () => {
     render(<App />)
 
     expect(screen.getByRole('heading', { level: 1, name: /I build web products/i })).toBeInTheDocument()
-    expect(screen.getByText('Lagos, Nigeria')).toBeInTheDocument()
+    expect(screen.getAllByText('Lagos, Nigeria')).toHaveLength(2)
     expect(screen.getByRole('heading', { name: 'TaskDuty' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Around the Globe' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Calculator' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Space Tourism Explorer' })).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Emmanuel Nwachinemere' })).toHaveAttribute(
+      'src',
+      '/emmanuel-nwachinemere.webp',
+    )
 
     expect(screen.getByRole('link', { name: /Open résumé/i })).toHaveAttribute(
       'href',

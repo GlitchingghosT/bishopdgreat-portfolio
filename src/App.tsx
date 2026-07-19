@@ -118,13 +118,30 @@ function App() {
           <div className="shell about-grid">
             <Reveal className="about-copy">
               <SectionHeading number="02" kicker="About" title="I like seeing the whole feature, not only my side of it." />
-              <div className="about-body">
-                <p>I am Emmanuel, a full-stack developer in Lagos. I enjoy frontend work because the details are visible, but I am just as interested in the logic and data that make the interface trustworthy.</p>
-                <p>I pay attention to the parts that are easy to skip in a demo: useful errors, loading states, validation, ownership checks, keyboard access, mobile layouts, and code I can still understand later.</p>
-              </div>
-              <div className="about-links">
-                <a href="mailto:nwachinemereemmanuel43@gmail.com">Email me <ArrowUpRight size={16} /></a>
-                <a href="/resume/Emmanuel_Nwachinemere_Full_Stack_Developer_ATS_CV.pdf" download>Download ATS résumé <DownloadIcon size={16} /></a>
+              <div className="about-profile">
+                <figure className="about-portrait">
+                  <img
+                    src="/emmanuel-nwachinemere.webp"
+                    alt="Emmanuel Nwachinemere"
+                    width="640"
+                    height="800"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    <strong>Emmanuel Nwachinemere</strong>
+                    <span>Lagos, Nigeria</span>
+                  </figcaption>
+                </figure>
+                <div className="about-details">
+                  <div className="about-body">
+                    <p>I am Emmanuel, a full-stack developer in Lagos. I enjoy frontend work because the details are visible, but I am just as interested in the logic and data that make the interface trustworthy.</p>
+                    <p>I pay attention to the parts that are easy to skip in a demo: useful errors, loading states, validation, ownership checks, keyboard access, mobile layouts, and code I can still understand later.</p>
+                  </div>
+                  <div className="about-links">
+                    <a href="mailto:nwachinemereemmanuel43@gmail.com">Email me <ArrowUpRight size={16} /></a>
+                    <a href="/resume/Emmanuel_Nwachinemere_Full_Stack_Developer_ATS_CV.pdf" download>Download ATS résumé <DownloadIcon size={16} /></a>
+                  </div>
+                </div>
               </div>
             </Reveal>
 

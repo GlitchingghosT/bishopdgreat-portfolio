@@ -46,7 +46,7 @@ The deployable output is written to `dist/`.
 
 ## Content and assets
 
-Project screenshots in `public/projects/` are captures of my published work. Résumé files and the BishopDGreat circuit-cross artwork are personal identity assets. See [ASSET-LICENSE.md](./ASSET-LICENSE.md) for their terms.
+Project screenshots in `public/projects/` are captures of my published work. My portrait, résumé files, and the BishopDGreat circuit-cross artwork are personal identity assets. See [ASSET-LICENSE.md](./ASSET-LICENSE.md) for their terms.
 
 ## License
 
