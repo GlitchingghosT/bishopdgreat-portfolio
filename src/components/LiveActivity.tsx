@@ -132,7 +132,7 @@ export function LiveActivity() {
 
   return (
     <section className="activity-section section shell" id="activity" aria-labelledby="activity-title">
-      <Reveal>
+      <Reveal variant="clip">
         <div className="section-heading">
           <p className="mono-label"><span>04</span>Live activity</p>
           <h2 id="activity-title">A small window into what I’m doing lately.</h2>
@@ -140,13 +140,13 @@ export function LiveActivity() {
         </div>
       </Reveal>
       <div className="activity-grid">
-        <Reveal className="activity-card" delay={60}>
+        <Reveal className="activity-card" delay={60} variant="slide-left">
           <article>
             <div className="activity-card-heading"><span className="activity-icon" aria-hidden="true">&gt;_</span><div><p className="mono-label">WakaTime</p><h3>Coding hours</h3></div></div>
             <CodingActivity state={waka} />
           </article>
         </Reveal>
-        <Reveal className="activity-card" delay={120}>
+        <Reveal className="activity-card" delay={120} variant="slide-right">
           <article>
             <div className="activity-card-heading"><span className="activity-icon spotify-icon" aria-hidden="true">♫</span><div><p className="mono-label">Spotify</p><h3>On repeat</h3></div></div>
             <SpotifyActivity state={spotify} />

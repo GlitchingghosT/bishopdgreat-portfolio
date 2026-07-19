@@ -4,9 +4,10 @@ type RevealProps = {
   children: ReactNode
   className?: string
   delay?: number
+  variant?: 'rise' | 'slide-left' | 'slide-right' | 'clip' | 'scale' | 'tilt' | 'focus'
 }
 
-export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
+export function Reveal({ children, className = '', delay = 0, variant = 'rise' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
 
@@ -25,7 +26,7 @@ export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
           observer.disconnect()
         }
       },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+      { rootMargin: '0px 0px -6% 0px', threshold: 0.08 },
     )
     observer.observe(element)
     return () => observer.disconnect()
@@ -34,7 +35,7 @@ export function Reveal({ children, className = '', delay = 0 }: RevealProps) {
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? 'is-visible' : ''} ${className}`.trim()}
+      className={`reveal reveal--${variant} ${visible ? 'is-visible' : ''} ${className}`.trim()}
       style={{ '--reveal-delay': `${delay}ms` } as CSSProperties}
     >
       {children}

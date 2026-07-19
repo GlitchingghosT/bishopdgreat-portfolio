@@ -241,8 +241,15 @@
 .footer-inner > a:last-child { min-height: 44px; display: inline-flex; align-items: center; justify-self: end; color: var(--muted); text-decoration: none; font-size: .77rem; }
 .footer-brand { font-size: .88rem; }
 
-.reveal { opacity: 1; transform: none; }
-.reveal.is-visible { animation: reveal-in .7s var(--reveal-delay, 0ms) cubic-bezier(.2,.8,.2,1) both; }
+.reveal { --reveal-shift: 34px; --reveal-shift-negative: -34px; --reveal-lift: 28px; opacity: 1; transform: none; }
+.reveal.is-visible { animation-duration: .74s; animation-delay: var(--reveal-delay, 0ms); animation-timing-function: cubic-bezier(.2,.78,.2,1); animation-fill-mode: both; }
+.reveal--rise.is-visible { animation-name: reveal-rise; }
+.reveal--slide-left.is-visible { animation-name: reveal-slide-left; }
+.reveal--slide-right.is-visible { animation-name: reveal-slide-right; }
+.reveal--clip.is-visible { animation-name: reveal-clip; animation-duration: .82s; }
+.reveal--scale.is-visible { animation-name: reveal-scale; animation-duration: .78s; }
+.reveal--tilt.is-visible { animation-name: reveal-tilt; }
+.reveal--focus.is-visible { animation-name: reveal-focus; animation-duration: .82s; }
 
 @keyframes hero-copy-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes hero-visual-in { from { opacity: 0; transform: scale(.94) translateY(20px); } to { opacity: 1; transform: none; } }
@@ -250,7 +257,13 @@
 @keyframes nodes-in { from { opacity: 0; transform: scale(.6); transform-origin: 260px 210px; } to { opacity: 1; transform: scale(1); transform-origin: 260px 210px; } }
 @keyframes orbit-spin { to { transform: rotate(360deg); } }
 @keyframes panel-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes reveal-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes reveal-rise { from { opacity: 0; transform: translate3d(0, var(--reveal-lift), 0); } to { opacity: 1; transform: none; } }
+@keyframes reveal-slide-left { from { opacity: 0; transform: translate3d(var(--reveal-shift-negative), 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes reveal-slide-right { from { opacity: 0; transform: translate3d(var(--reveal-shift), 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes reveal-clip { from { opacity: .18; clip-path: inset(0 0 24% 0); transform: translate3d(0, 18px, 0); } to { opacity: 1; clip-path: inset(0); transform: none; } }
+@keyframes reveal-scale { from { opacity: 0; transform: scale(.965) translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+@keyframes reveal-tilt { from { opacity: 0; transform: translate3d(0, var(--reveal-lift), 0) rotate(.45deg); } to { opacity: 1; transform: none; } }
+@keyframes reveal-focus { from { opacity: 0; transform: scale(.975); } to { opacity: 1; transform: none; } }
 @keyframes cue-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 @keyframes music-bar { from { transform: scaleY(.3); } to { transform: scaleY(1); } }
 
@@ -326,6 +339,7 @@
 }
 
 @media (max-width: 580px) {
+  .reveal { --reveal-shift: 18px; --reveal-shift-negative: -18px; --reveal-lift: 20px; }
   .section { padding-block: 82px; }
   .brand span { font-size: .88rem; }
   .hero { padding-top: 104px; }
@@ -365,7 +379,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; clip-path: none; }
   .brand-line { stroke-dashoffset: 0; }
   .brand-nodes { opacity: 1; }
   .hero-copy,

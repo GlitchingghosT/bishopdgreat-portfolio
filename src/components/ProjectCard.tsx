@@ -25,7 +25,11 @@ function ArchitectureVisual() {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <Reveal className={`project-card project-card-${index} ${project.featured ? 'project-featured' : ''}`} delay={index * 70}>
+    <Reveal
+      className={`project-card project-card-${index} ${project.featured ? 'project-featured' : ''}`}
+      delay={index * 70}
+      variant={index % 2 === 0 ? 'slide-left' : 'slide-right'}
+    >
       <article>
         <div className="project-visual">
           {project.image ? (

@@ -109,7 +109,7 @@ function App() {
         </section>
 
         <section className="work-section section shell" id="work" aria-labelledby="work-title">
-          <Reveal>
+          <Reveal variant="rise">
             <SectionHeading
               number="01"
               kicker="Selected work"
@@ -124,7 +124,7 @@ function App() {
 
         <section className="about-section section" id="about" aria-labelledby="about-title">
           <div className="shell about-grid">
-            <Reveal className="about-copy">
+            <Reveal className="about-copy" variant="slide-left">
               <SectionHeading number="02" kicker="About" title="I like seeing the whole feature, not only my side of it." />
               <div className="about-profile">
                 <figure className="about-portrait">
@@ -153,7 +153,7 @@ function App() {
               </div>
             </Reveal>
 
-            <Reveal className="experience-panel" delay={100}>
+            <Reveal className="experience-panel" delay={100} variant="slide-right">
               <p className="mono-label">Experience</p>
               <div className="experience-entry">
                 <div className="experience-date">Mar — Jun 2026</div>
@@ -173,7 +173,7 @@ function App() {
         </section>
 
         <section className="approach-section section shell" id="approach" aria-labelledby="approach-title">
-          <Reveal>
+          <Reveal variant="clip">
             <SectionHeading
               number="03"
               kicker="Approach"
@@ -183,7 +183,7 @@ function App() {
           </Reveal>
           <div className="principle-grid">
             {principles.map((principle, index) => (
-              <Reveal key={principle.number} className="principle-card" delay={index * 90}>
+              <Reveal key={principle.number} className="principle-card" delay={index * 90} variant={index === 1 ? 'rise' : 'tilt'}>
                 <article>
                   <span>{principle.number}</span>
                   <h3>{principle.title}</h3>
@@ -193,7 +193,7 @@ function App() {
             ))}
           </div>
 
-          <Reveal className="stack-panel">
+          <Reveal className="stack-panel" variant="scale">
             <div className="stack-intro">
               <p className="mono-label">What I work with</p>
               <h3>A focused stack, used across the full product.</h3>
@@ -214,7 +214,7 @@ function App() {
         <section className="contact-section section" id="contact" aria-labelledby="contact-title">
           <div className="contact-circuit" aria-hidden="true" />
           <div className="shell contact-inner">
-            <Reveal>
+            <Reveal variant="focus">
               <p className="mono-label">{liveActivityEnabled ? '05' : '04'} / Contact</p>
               <h2 id="contact-title">Have a product to build or a team I could help?</h2>
               <p>Tell me what you are working on, where it is stuck, and what a good outcome looks like. Reach me directly through Gmail, WhatsApp, or a phone call.</p>
