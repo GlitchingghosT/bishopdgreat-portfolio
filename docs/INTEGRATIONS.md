@@ -2,7 +2,7 @@
 
 The portfolio has two optional live-data cards. Neither integration invents fallback statistics or tracks: when a connection is absent, the UI says setup is pending.
 
-The section is disabled by default. After both integrations are configured, set `VITE_ENABLE_LIVE_ACTIVITY=true` in Vercel and redeploy. Until then, neither the Activity navbar link nor the section is rendered.
+The section is disabled by default. After both integrations are configured, set `VITE_ENABLE_LIVE_ACTIVITY=true` in Netlify and redeploy. Until then, neither the Activity navbar link nor the section is rendered.
 
 ## WakaTime coding hours
 
@@ -21,7 +21,7 @@ WakaTime explicitly recommends **not** using a secret API key on a public websit
    https://wakatime.com/share/@username/share-id.json
    ```
 
-7. Add that URL to Vercel as `WAKATIME_SHARE_URL`.
+7. Add that URL to Netlify as `WAKATIME_SHARE_URL`.
 
 The public share URL is not the secret API key. The server function validates that it uses HTTPS, belongs to `wakatime.com`, and starts with `/share/`. It returns only the latest seven daily totals, weekly total, and daily average.
 
@@ -56,16 +56,16 @@ Spotify requires user authorization. The browser never receives the client secre
    - `user-read-currently-playing`
    - `user-read-recently-played`
 7. The helper saves the refresh token directly to ignored `.env.local` with owner-only file permissions. It does not print the token.
-8. Add all three Spotify values from `.env.local` directly to the Vercel project’s environment variables.
+8. Add all three Spotify values from `.env.local` directly to the Netlify site’s environment variables.
 
 Never send the client secret or refresh token through chat, email, screenshots, commits, or frontend variables. In particular, do not prefix them with `VITE_`.
 
 ## Local development
 
-`npm run dev` runs Vite only, so the cards show their honest connection-pending states. To exercise Vercel functions locally after configuration, use the Vercel CLI:
+`npm run dev` runs Vite only, so the cards show their honest connection-pending states. To exercise Netlify Functions locally after configuration, use the Netlify CLI:
 
 ```bash
-vercel dev
+npx netlify-cli dev
 ```
 
 ## Public API contracts

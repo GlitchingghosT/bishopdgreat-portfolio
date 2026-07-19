@@ -1,0 +1,28 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/wakatime"
+  to = "/.netlify/functions/wakatime"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/spotify"
+  to = "/.netlify/functions/spotify"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'sha256-o0oV5FhFJvSUkR72ut5MPlF+X2PGSgk2kGqizGwabrc='; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://i.scdn.co; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

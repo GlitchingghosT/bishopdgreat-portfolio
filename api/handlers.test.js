@@ -1,26 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import spotifyHandler from './spotify.js'
-import wakatimeHandler from './wakatime.js'
-
-function createResponse() {
-  const headers = new Map()
-  return {
-    headers,
-    statusCode: null,
-    body: null,
-    setHeader: vi.fn((name, value) => headers.set(name.toLowerCase(), value)),
-    status: vi.fn(function setStatus(code) {
-      this.statusCode = code
-      return this
-    }),
-    json: vi.fn(function sendJson(body) {
-      this.body = body
-      return this
-    }),
-  }
-}
+import { handler as spotifyHandler } from '../netlify/functions/spotify.mjs'
+import { handler as wakatimeHandler } from '../netlify/functions/wakatime.mjs'
 
 const originalEnvironment = { ...process.env }
+const parseBody = (response) => JSON.parse(response.body)
 
 beforeEach(() => {
   delete process.env.WAKATIME_SHARE_URL
@@ -34,29 +17,25 @@ afterEach(() => {
   vi.unstubAllGlobals()
 })
 
-describe('serverless handler contracts', () => {
+describe('Netlify function contracts', () => {
   it('rejects unsupported methods without caching the response', async () => {
-    const response = createResponse()
-
-    await wakatimeHandler({ method: 'POST' }, response)
+    const response = await wakatimeHandler({ httpMethod: 'POST' })
 
     expect(response.statusCode).toBe(405)
-    expect(response.headers.get('allow')).toBe('GET')
-    expect(response.headers.get('cache-control')).toBe('no-store')
-    expect(response.body).toEqual({ status: 'error', code: 'METHOD_NOT_ALLOWED' })
+    expect(response.headers.Allow).toBe('GET')
+    expect(response.headers['Cache-Control']).toBe('no-store')
+    expect(parseBody(response)).toEqual({ status: 'error', code: 'METHOD_NOT_ALLOWED' })
   })
 
   it.each([
     ['WakaTime', wakatimeHandler],
     ['Spotify', spotifyHandler],
   ])('returns uncached 503 when %s is not configured', async (_name, handler) => {
-    const response = createResponse()
-
-    await handler({ method: 'GET' }, response)
+    const response = await handler({ httpMethod: 'GET' })
 
     expect(response.statusCode).toBe(503)
-    expect(response.headers.get('cache-control')).toBe('no-store')
-    expect(response.body).toEqual({ status: 'unconfigured' })
+    expect(response.headers['Cache-Control']).toBe('no-store')
+    expect(parseBody(response)).toEqual({ status: 'unconfigured' })
   })
 
   it('caches only a successful WakaTime response', async () => {
@@ -64,25 +43,23 @@ describe('serverless handler contracts', () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({
       days: [{ date: '2026-07-19', total: 3600 }],
     }), { headers: { 'Content-Type': 'application/json' } })))
-    const response = createResponse()
 
-    await wakatimeHandler({ method: 'GET' }, response)
+    const response = await wakatimeHandler({ httpMethod: 'GET' })
 
     expect(response.statusCode).toBe(200)
-    expect(response.headers.get('cache-control')).toContain('s-maxage=900')
-    expect(response.body.status).toBe('ok')
+    expect(response.headers['Cache-Control']).toContain('s-maxage=900')
+    expect(parseBody(response).status).toBe('ok')
   })
 
   it('returns uncached 502 without leaking upstream errors', async () => {
     process.env.WAKATIME_SHARE_URL = 'https://wakatime.com/share/@bishop/example.json'
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('sensitive upstream detail')))
-    const response = createResponse()
 
-    await wakatimeHandler({ method: 'GET' }, response)
+    const response = await wakatimeHandler({ httpMethod: 'GET' })
 
     expect(response.statusCode).toBe(502)
-    expect(response.headers.get('cache-control')).toBe('no-store')
-    expect(response.body).toEqual({ status: 'unavailable' })
-    expect(JSON.stringify(response.body)).not.toContain('sensitive')
+    expect(response.headers['Cache-Control']).toBe('no-store')
+    expect(parseBody(response)).toEqual({ status: 'unavailable' })
+    expect(response.body).not.toContain('sensitive')
   })
 })

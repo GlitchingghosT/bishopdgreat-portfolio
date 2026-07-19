@@ -16,7 +16,7 @@ The visual system continues the dark circuit-cross identity used on my GitHub pr
 - Designed and ATS résumé downloads
 - Self-hosted Manrope and Geist Mono fonts
 - SEO metadata and Person structured data
-- Vercel production security headers
+- Netlify production security headers
 
 ## Run locally
 
@@ -48,7 +48,7 @@ The deployable output is written to `dist/`.
 
 ## Live integrations
 
-WakaTime uses a safe public JSON share; Spotify uses server-only Vercel environment variables. See [docs/INTEGRATIONS.md](./docs/INTEGRATIONS.md) for the exact setup and authorization steps. Never commit `.env.local` or expose Spotify credentials through `VITE_` variables.
+WakaTime uses a safe public JSON share; Spotify uses server-only Netlify environment variables. See [docs/INTEGRATIONS.md](./docs/INTEGRATIONS.md) for the exact setup and authorization steps. Never commit `.env.local` or expose Spotify credentials through `VITE_` variables.
 
 ## Content and assets
 

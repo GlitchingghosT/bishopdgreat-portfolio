@@ -86,7 +86,7 @@ const server = createServer(async (request, response) => {
     response.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' })
     response.end('Spotify authorization complete. You can close this tab and return to the terminal.')
     console.log('\nSpotify refresh token saved to ignored .env.local with owner-only permissions.')
-    console.log('Add the same value directly to your Vercel environment without sharing it.')
+    console.log('Add the same value directly to your Netlify environment without sharing it.')
   } catch (error) {
     response.writeHead(500).end('Authorization failed. Return to the terminal for details.')
     console.error(error instanceof Error ? error.message : 'Spotify authorization failed')
