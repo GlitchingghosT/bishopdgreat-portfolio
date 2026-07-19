@@ -22,8 +22,8 @@
 
 :root {
   font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: #e8ecf6;
-  background: #060814;
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,15 +38,34 @@
   --cyan: #61dbfb;
   --violet: #7e5bff;
   --gold: #eebe5c;
+  --spotify: #1ed760;
   --border: rgba(255, 255, 255, 0.09);
   --border-soft: rgba(255, 255, 255, 0.055);
   --shell: min(1180px, calc(100% - 48px));
   color-scheme: dark;
 }
 
+:root[data-theme='light'] {
+  --bg: #f6f8fc;
+  --bg-deep: #edf1f8;
+  --surface: #ffffff;
+  --surface-raised: #f0f3fa;
+  --text: #11182a;
+  --text-soft: #303a50;
+  --muted: #44516a;
+  --faint: #59657c;
+  --cyan: #006f89;
+  --violet: #6547df;
+  --gold: #865600;
+  --spotify: #087a35;
+  --border: rgba(15, 23, 42, 0.18);
+  --border-soft: rgba(15, 23, 42, 0.11);
+  color-scheme: light;
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--bg); }
+body { margin: 0; min-width: 320px; min-height: 100vh; color: var(--text); background: var(--bg); transition: color .25s ease, background .25s ease; }
 body::before {
   content: '';
   position: fixed;
@@ -70,6 +89,19 @@ body::after {
     linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: linear-gradient(to bottom, #000, transparent 75%);
+}
+
+:root[data-theme='light'] body::before {
+  background:
+    radial-gradient(circle at 18% 4%, rgba(8, 127, 156, 0.11), transparent 28%),
+    radial-gradient(circle at 82% 16%, rgba(101, 71, 223, 0.1), transparent 30%),
+    linear-gradient(180deg, #f8faff 0%, #f3f6fb 52%, #eef2f8 100%);
+}
+:root[data-theme='light'] body::after {
+  opacity: .48;
+  background-image:
+    linear-gradient(rgba(15,23,42,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,.035) 1px, transparent 1px);
 }
 
 button, a { font: inherit; }

@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import App from './App'
 
 describe('portfolio', () => {
+  beforeEach(() => {
+    localStorage.clear()
+    delete document.documentElement.dataset.theme
+  })
+
   it('renders factual identity, selected work, and contact routes', () => {
     render(<App />)
 
@@ -46,5 +51,17 @@ describe('portfolio', () => {
     const closedMenu = screen.getByRole('button', { name: 'Open navigation' })
     expect(closedMenu).toHaveAttribute('aria-expanded', 'false')
     expect(closedMenu).toHaveFocus()
+  })
+
+  it('switches theme accessibly and persists the choice', async () => {
+    const user = userEvent.setup()
+    localStorage.setItem('bishopdgreat-theme', 'dark')
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: 'Switch to light theme' }))
+
+    expect(document.documentElement).toHaveAttribute('data-theme', 'light')
+    expect(localStorage.getItem('bishopdgreat-theme')).toBe('light')
+    expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeInTheDocument()
   })
 })

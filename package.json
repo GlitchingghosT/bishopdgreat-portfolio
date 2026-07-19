@@ -14,7 +14,9 @@
     "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run test && npm run lint && npm run build && npm audit --audit-level=high",
+    "spotify:authorize": "node --env-file-if-exists=.env.local scripts/spotify-auth.mjs",
+    "scan:secrets": "node scripts/scan-secrets.mjs",
+    "check": "npm run test && npm run lint && npm run build && npm run scan:secrets && npm audit --audit-level=high",
     "preview": "vite preview"
   },
   "dependencies": {

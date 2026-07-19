@@ -3,6 +3,7 @@ import './App.css'
 import { BrandMark } from './components/BrandMark'
 import { Header } from './components/Header'
 import { ArrowUpRight, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from './components/Icons'
+import { LiveActivity } from './components/LiveActivity'
 import { ProjectCard } from './components/ProjectCard'
 import { Reveal } from './components/Reveal'
 import { principles, projects, skillGroups } from './data/portfolio'
@@ -201,11 +202,13 @@ function App() {
           </Reveal>
         </section>
 
+        <LiveActivity />
+
         <section className="contact-section section" id="contact" aria-labelledby="contact-title">
           <div className="contact-circuit" aria-hidden="true" />
           <div className="shell contact-inner">
             <Reveal>
-              <p className="mono-label">04 / Contact</p>
+              <p className="mono-label">05 / Contact</p>
               <h2 id="contact-title">Have a product to build or a team I could help?</h2>
               <p>Tell me what you are working on, where it is stuck, and what a good outcome looks like.</p>
               <div className="contact-actions">

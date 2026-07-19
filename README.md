@@ -7,7 +7,9 @@ The visual system continues the dark circuit-cross identity used on my GitHub pr
 ## What is included
 
 - Responsive layouts for mobile, tablet, laptop, and wide desktop screens
+- Persistent light and dark themes with system-preference support
 - Selected project cards with verified source and live-demo links
+- Live WakaTime coding hours and Spotify current/recent track cards
 - A TaskDuty architecture panel that does not imply the app is deployed
 - Accessible mobile navigation, skip link, focus states, semantic landmarks, and reduced-motion support
 - Visible-by-default scroll content with animation as progressive enhancement
@@ -43,6 +45,10 @@ npm run preview
 ```
 
 The deployable output is written to `dist/`.
+
+## Live integrations
+
+WakaTime uses a safe public JSON share; Spotify uses server-only Vercel environment variables. See [docs/INTEGRATIONS.md](./docs/INTEGRATIONS.md) for the exact setup and authorization steps. Never commit `.env.local` or expose Spotify credentials through `VITE_` variables.
 
 ## Content and assets
 

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { BrandMark } from './BrandMark'
 import { ArrowUpRight, CloseIcon, MenuIcon } from './Icons'
+import { ThemeToggle } from './ThemeToggle'
 
 const links = [
   { href: '#work', label: 'Work' },
   { href: '#about', label: 'About' },
   { href: '#approach', label: 'Approach' },
+  { href: '#activity', label: 'Activity' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -33,17 +35,21 @@ export function Header() {
           <span>BishopDGreat</span>
         </a>
 
-        <button
-          ref={menuButtonRef}
-          className="menu-button"
-          type="button"
-          aria-expanded={open}
-          aria-controls="site-menu"
-          aria-label={open ? 'Close navigation' : 'Open navigation'}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <CloseIcon /> : <MenuIcon />}
-        </button>
+        <div className="nav-controls">
+          <ThemeToggle />
+          <button
+            ref={menuButtonRef}
+            className="menu-button"
+            type="button"
+            aria-expanded={open}
+            aria-controls="site-menu"
+            aria-label={open ? 'Close navigation' : 'Open navigation'}
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span>{open ? 'Close' : 'Menu'}</span>
+            {open ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
 
         <div className={`nav-menu ${open ? 'is-open' : ''}`} id="site-menu">
           <div className="nav-links">
