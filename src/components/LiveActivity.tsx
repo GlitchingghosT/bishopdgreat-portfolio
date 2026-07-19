@@ -134,7 +134,7 @@ export function LiveActivity() {
     <section className="activity-section section shell" id="activity" aria-labelledby="activity-title">
       <Reveal variant="clip">
         <div className="section-heading">
-          <p className="mono-label"><span>04</span>Live activity</p>
+          <p className="mono-label"><span>05</span>Live activity</p>
           <h2 id="activity-title">A small window into what I’m doing lately.</h2>
           <p>Coding time comes from WakaTime. Music comes from Spotify. Both are live when their connections are available.</p>
         </div>

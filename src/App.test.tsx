@@ -23,10 +23,18 @@ describe('portfolio', () => {
     expect(screen.getByRole('heading', { name: /I like seeing the whole feature/i }).closest('.reveal')).toHaveClass('reveal--slide-left')
     expect(screen.getByRole('heading', { name: /My process is practical/i }).closest('.reveal')).toHaveClass('reveal--clip')
     expect(screen.getByRole('heading', { name: /A focused stack/i }).closest('.reveal')).toHaveClass('reveal--scale')
+    expect(screen.getByRole('heading', { name: 'Outside the commit history.' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Off duty' })).toHaveAttribute('href', '#off-duty')
+    expect(screen.getByText('Wagwan, you found me.')).toBeInTheDocument()
+    expect(screen.getByText('<Lord> Bishop </DGreat>')).toBeInTheDocument()
+    expect(screen.getByText('Higher Powers')).toBeInTheDocument()
+    expect(screen.getByText('Speak to Me')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Outside the commit history.' }).closest('.reveal')).toHaveClass('reveal--slide-left')
+    expect(screen.getByText(/I believe there's a Creator/i).closest('.reveal')).toHaveClass('reveal--focus')
     expect(screen.getByRole('heading', { name: /Have a product to build/i }).closest('.reveal')).toHaveClass('reveal--focus')
     expect(screen.queryByRole('link', { name: 'Activity' })).not.toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Coding hours' })).not.toBeInTheDocument()
-    expect(screen.getByText('04 / Contact')).toBeInTheDocument()
+    expect(screen.getByText('05 / Contact')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'Emmanuel Nwachinemere' })).toHaveAttribute(
       'src',
       '/emmanuel-nwachinemere.webp',

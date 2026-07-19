@@ -184,6 +184,51 @@
 .skill-group ul { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
 .skill-group li { padding: 7px 10px; color: var(--muted); border: 1px solid var(--border-soft); border-radius: 6px; background: rgba(255,255,255,.025); font: .67rem 'Geist Mono', monospace; }
 
+.personal-section { position: relative; overflow: hidden; border-block: 1px solid var(--border-soft); background: linear-gradient(145deg, color-mix(in srgb, var(--violet) 7%, var(--bg-deep)), color-mix(in srgb, var(--gold) 3%, var(--bg))); }
+.personal-section::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .5; background: radial-gradient(circle at 15% 20%, rgba(126,91,255,.14), transparent 30%), radial-gradient(circle at 88% 68%, rgba(238,190,92,.09), transparent 27%); }
+.personal-circuit { position: absolute; inset: 0; pointer-events: none; opacity: .22; background-image: linear-gradient(90deg, transparent 49.8%, rgba(97,219,251,.11) 50%, transparent 50.2%), linear-gradient(transparent 49.8%, rgba(97,219,251,.08) 50%, transparent 50.2%); background-size: 140px 140px; mask-image: linear-gradient(90deg, transparent, #000 28%, #000 72%, transparent); }
+.personal-shell { position: relative; z-index: 1; }
+.personal-stage { display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(390px, .94fr); gap: clamp(52px, 7vw, 104px); align-items: center; }
+.personal-story .mono-label span { margin-right: 12px; color: var(--gold); }
+.personal-story h2 { max-width: 720px; margin: 17px 0 34px; font-size: clamp(2.7rem, 5.5vw, 5.25rem); line-height: .98; letter-spacing: -.065em; }
+.personal-hello { margin-bottom: 18px; color: var(--cyan); font: 600 clamp(1.2rem, 2vw, 1.5rem)/1.3 'Geist Mono', monospace; }
+.personal-copy { max-width: 690px; }
+.personal-copy p { margin-bottom: 20px; color: color-mix(in srgb, var(--text) 82%, var(--muted)); font-size: clamp(1rem, 1.4vw, 1.1rem); line-height: 1.82; }
+.personal-copy p:last-child { margin-bottom: 0; }
+.personal-copy code { display: inline-block; max-width: 100%; padding: 2px 6px; color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); border-radius: 5px; background: color-mix(in srgb, var(--gold) 8%, transparent); font: 500 .88em 'Geist Mono', monospace; white-space: nowrap; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.personal-copy em { color: var(--text); font-style: normal; }
+.personal-scrapbook { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 17px; }
+.personal-note-wrap { min-width: 0; }
+.personal-note-wrap-loop { grid-column: 1 / -1; }
+.personal-note-wrap-music { margin: 43px 0 0 -22px; position: relative; z-index: 2; }
+.personal-note-wrap-movies { grid-column: 1 / -1; width: 88%; justify-self: end; margin-top: -15px; position: relative; z-index: 1; }
+.personal-note { position: relative; padding: 25px; color: #182132; border: 1px solid rgba(24,33,50,.18); box-shadow: 0 22px 58px rgba(0,0,0,.22); }
+.personal-note-loop { width: 94%; padding: 20px 22px; border-radius: 3px 18px 5px 16px; background: #d9f4f7; transform: rotate(-1deg); }
+.personal-note-games { border-style: dashed; border-radius: 18px 4px 16px 6px; background: #ece5ff; transform: rotate(-1.45deg); }
+.personal-note-games::before { content: ''; position: absolute; width: 72px; height: 20px; top: -11px; left: 50%; transform: translateX(-50%) rotate(2deg); background: rgba(248,235,195,.75); box-shadow: 0 2px 5px rgba(53,43,20,.12); }
+.personal-note-music { border-radius: 4px 20px 6px 18px; background: #fff1c7; transform: rotate(1.35deg); }
+.personal-note-music::before { content: ''; position: absolute; width: 11px; height: 11px; top: 11px; right: 14px; border-radius: 50%; background: #d86c62; box-shadow: 0 2px 0 #8f3d38, 0 5px 9px rgba(51,24,20,.22); }
+.personal-note-movies { padding: 25px 30px; border: 0; background: #dcecff; clip-path: polygon(1% 5%, 100% 0, 98% 94%, 0 100%); transform: rotate(-.8deg); }
+.note-label { margin-bottom: 15px; color: #4f5969; font: italic 700 .78rem/1.35 'Manrope', sans-serif; letter-spacing: .015em; text-transform: none; }
+.hobby-loop { display: flex; flex-wrap: wrap; gap: 8px 11px; align-items: center; }
+.hobby-loop span { display: inline-flex; align-items: center; gap: 10px; color: #182132; font: 600 .8rem/1.35 'Geist Mono', monospace; }
+.hobby-loop b { color: #6550a7; font-weight: 400; }
+.personal-note-games p:not(.note-label) { margin: 0; font-size: .95rem; line-height: 1.65; }
+.personal-note-games p + p { margin-top: 9px; }
+.personal-note-games strong { color: #17132a; }
+.personal-note-music ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.personal-note-music li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 10px; align-items: start; }
+.personal-note-music li > span { color: #7a5914; font: .7rem/1.55 'Geist Mono', monospace; text-transform: uppercase; }
+.personal-note-music li div { display: grid; gap: 3px; }
+.personal-note-music strong { color: #241c0a; font-size: .98rem; }
+.personal-note-music small { color: #6b5c39; font-size: .82rem; }
+.personal-note-movies p:last-child { margin: 0; color: #25354c; font-size: .97rem; line-height: 1.72; }
+.personal-note-movies strong { color: #17243a; }
+.personal-belief { display: grid; grid-template-columns: minmax(120px, .35fr) minmax(0, 1.65fr); gap: 26px 54px; align-items: start; margin-top: clamp(74px, 9vw, 120px); padding: clamp(30px, 5vw, 54px) 0; border-block: 1px solid var(--border); }
+.personal-belief .note-label { margin: 7px 0 0; color: var(--gold); }
+.personal-belief blockquote { margin: 0; max-width: 900px; color: var(--text); font-size: clamp(1.35rem, 2.55vw, 2.15rem); line-height: 1.42; letter-spacing: -.03em; }
+.personal-signoff { grid-column: 2; max-width: 790px; margin: 0; color: var(--muted); font-size: .91rem; line-height: 1.75; }
+
 .activity-section { padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(72px, 8vw, 110px); }
 .activity-section .section-heading { max-width: 710px; }
 .activity-section .section-heading .mono-label span { color: var(--gold); margin-right: 12px; }
@@ -280,6 +325,8 @@
 :root[data-theme='light'] .experience-panel { background: rgba(255,255,255,.78); box-shadow: 0 20px 60px rgba(30,41,59,.07); }
 :root[data-theme='light'] .principle-card article { background: linear-gradient(180deg, rgba(255,255,255,.74), transparent); }
 :root[data-theme='light'] .stack-panel { background: linear-gradient(130deg, rgba(101,71,223,.075), rgba(8,127,156,.045)); }
+:root[data-theme='light'] .personal-note { box-shadow: 0 20px 50px rgba(30,41,59,.1); }
+:root[data-theme='light'] .personal-section { background: linear-gradient(145deg, rgba(101,71,223,.055), rgba(134,86,0,.035)); }
 :root[data-theme='light'] .activity-card article { border-color: rgba(15,23,42,.17); background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(237,241,249,.9)); box-shadow: 0 18px 48px rgba(30,41,59,.1); }
 :root[data-theme='light'] .coding-summary > div { background: rgba(255,255,255,.76); }
 :root[data-theme='light'] .system-panel,
@@ -331,6 +378,9 @@
   .project-card:last-child .project-visual { min-height: 300px; border-right: 0; border-bottom: 1px solid var(--border-soft); }
   .about-grid { grid-template-columns: 1fr; }
   .about-profile { grid-template-columns: 260px minmax(0, 1fr); gap: 34px; }
+  .personal-stage { grid-template-columns: 1fr; gap: 70px; }
+  .personal-story { max-width: 760px; }
+  .personal-scrapbook { width: min(100%, 720px); }
   .principle-grid { grid-template-columns: 1fr; }
   .activity-grid { grid-template-columns: 1fr; }
   .principle-card h3 { margin-top: 28px; }
@@ -367,6 +417,22 @@
   .about-profile { grid-template-columns: 1fr; }
   .about-portrait { width: min(100%, 280px); }
   .experience-panel { padding: 24px; }
+  .personal-stage { gap: 52px; }
+  .personal-story h2 { font-size: clamp(2.65rem, 14vw, 4rem); }
+  .personal-copy code { overflow-wrap: anywhere; }
+  .personal-scrapbook { grid-template-columns: 1fr; gap: 15px; }
+  .personal-note-wrap-loop,
+  .personal-note-wrap-movies { grid-column: auto; }
+  .personal-note-wrap-music { margin: 0; }
+  .personal-note-wrap-movies { width: 100%; margin-top: 0; }
+  .personal-note { padding: 21px; }
+  .personal-note-music,
+  .personal-note-games,
+  .personal-note-loop,
+  .personal-note-movies { transform: none; }
+  .personal-belief { grid-template-columns: 1fr; gap: 20px; margin-top: 68px; }
+  .personal-belief .note-label { margin-top: 0; }
+  .personal-signoff { grid-column: auto; }
   .spotify-track { grid-template-columns: 110px minmax(0, 1fr); gap: 18px; }
   .spotify-track > img, .album-placeholder { width: 110px; }
   .stack-panel { margin-top: 52px; padding: 24px; }

@@ -4,6 +4,7 @@ import { BrandMark } from './components/BrandMark'
 import { Header } from './components/Header'
 import { ArrowUpRight, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon, MessageIcon, PhoneIcon } from './components/Icons'
 import { LiveActivity } from './components/LiveActivity'
+import { PersonalSection } from './components/PersonalSection'
 import { ProjectCard } from './components/ProjectCard'
 import { Reveal } from './components/Reveal'
 import { principles, projects, skillGroups } from './data/portfolio'
@@ -209,13 +210,15 @@ function App() {
           </Reveal>
         </section>
 
+        <PersonalSection />
+
         {liveActivityEnabled && <LiveActivity />}
 
         <section className="contact-section section" id="contact" aria-labelledby="contact-title">
           <div className="contact-circuit" aria-hidden="true" />
           <div className="shell contact-inner">
             <Reveal variant="focus">
-              <p className="mono-label">{liveActivityEnabled ? '05' : '04'} / Contact</p>
+              <p className="mono-label">{liveActivityEnabled ? '06' : '05'} / Contact</p>
               <h2 id="contact-title">Have a product to build or a team I could help?</h2>
               <p>Tell me what you are working on, where it is stuck, and what a good outcome looks like. Reach me directly through Gmail, WhatsApp, or a phone call.</p>
               <div className="contact-details" aria-label="Direct contact details">

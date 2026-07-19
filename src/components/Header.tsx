@@ -8,6 +8,7 @@ const links = [
   { href: '#work', label: 'Work' },
   { href: '#about', label: 'About' },
   { href: '#approach', label: 'Approach' },
+  { href: '#off-duty', label: 'Off duty' },
   ...(liveActivityEnabled ? [{ href: '#activity', label: 'Activity' }] : []),
   { href: '#contact', label: 'Contact' },
 ]
