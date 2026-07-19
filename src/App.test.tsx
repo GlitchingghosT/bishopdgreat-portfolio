@@ -30,10 +30,16 @@ describe('portfolio', () => {
       'href',
       '/resume/Emmanuel_Nwachinemere_Full_Stack_Developer_CV.pdf',
     )
-    expect(screen.getByRole('link', { name: /Start a conversation/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /nwachinemereemmanuel43@gmail.com/i })).toHaveAttribute(
       'href',
-      'mailto:nwachinemereemmanuel43@gmail.com',
+      expect.stringContaining('https://mail.google.com/mail/'),
     )
+    expect(screen.getByRole('link', { name: /\+234 906 339 2734/i })).toHaveAttribute('href', 'tel:+2349063392734')
+    expect(screen.getByRole('link', { name: /Message on WhatsApp/i })).toHaveAttribute(
+      'href',
+      expect.stringContaining('https://wa.me/2349063392734'),
+    )
+    expect(document.querySelector('a[href^="mailto:"]')).not.toBeInTheDocument()
   })
 
   it('opens and closes the mobile navigation accessibly', async () => {

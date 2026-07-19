@@ -220,11 +220,18 @@
 .playing-bars i:nth-child(3) { height: 82%; animation-delay: -.5s; }
 
 .contact-section { position: relative; overflow: hidden; border-top: 1px solid var(--border-soft); background: var(--bg-deep); }
-.contact-inner { position: relative; z-index: 1; display: grid; place-items: center; min-height: 660px; text-align: center; }
+.contact-inner { position: relative; z-index: 1; display: grid; place-items: center; min-height: 740px; text-align: center; }
 .contact-inner .reveal { max-width: 840px; }
 .contact-inner .mono-label { color: var(--gold); }
 .contact-inner h2 { margin: 18px 0 22px; font-size: clamp(2.6rem, 6vw, 5.4rem); line-height: 1; letter-spacing: -.065em; }
 .contact-inner p:not(.mono-label) { max-width: 610px; margin: 0 auto 32px; color: var(--muted); font-size: 1.02rem; line-height: 1.75; }
+.contact-details { width: min(100%, 760px); margin: 0 auto 22px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.contact-details a { min-width: 0; display: flex; align-items: center; gap: 13px; padding: 17px 18px; color: var(--text); text-align: left; text-decoration: none; border: 1px solid var(--border); border-radius: 13px; background: color-mix(in srgb, var(--surface) 88%, transparent); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+.contact-details a:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--cyan) 48%, transparent); background: color-mix(in srgb, var(--surface-strong) 94%, transparent); }
+.contact-details svg { flex: 0 0 auto; color: var(--cyan); }
+.contact-details span { min-width: 0; display: grid; gap: 3px; }
+.contact-details small { color: var(--faint); font: 500 .65rem/1.2 'Geist Mono', monospace; letter-spacing: .08em; text-transform: uppercase; }
+.contact-details strong { overflow-wrap: anywhere; font-size: .9rem; line-height: 1.35; }
 .contact-actions { justify-content: center; }
 .contact-circuit { position: absolute; width: 700px; height: 700px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: .34; background: radial-gradient(circle, transparent 27%, rgba(126,91,255,.07) 28%, transparent 29%), linear-gradient(90deg, transparent 49.8%, rgba(97,219,251,.1) 50%, transparent 50.2%), linear-gradient(transparent 49.8%, rgba(97,219,251,.1) 50%, transparent 50.2%); mask-image: radial-gradient(circle, #000, transparent 69%); }
 
@@ -351,6 +358,7 @@
   .stack-panel { margin-top: 52px; padding: 24px; }
   .contact-inner { min-height: 590px; }
   .contact-inner h2 { font-size: clamp(2.55rem, 13vw, 4rem); }
+  .contact-details { grid-template-columns: 1fr; }
   .contact-actions .button { width: 100%; }
   .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; }
   .footer-inner p { width: 100%; order: 3; }

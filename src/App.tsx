@@ -2,12 +2,18 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { BrandMark } from './components/BrandMark'
 import { Header } from './components/Header'
-import { ArrowUpRight, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from './components/Icons'
+import { ArrowUpRight, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon, MessageIcon, PhoneIcon } from './components/Icons'
 import { LiveActivity } from './components/LiveActivity'
 import { ProjectCard } from './components/ProjectCard'
 import { Reveal } from './components/Reveal'
 import { principles, projects, skillGroups } from './data/portfolio'
 import { liveActivityEnabled } from './config'
+
+const email = 'nwachinemereemmanuel43@gmail.com'
+const phoneDisplay = '+234 906 339 2734'
+const phoneHref = 'tel:+2349063392734'
+const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent('Portfolio inquiry')}`
+const whatsappHref = `https://wa.me/2349063392734?text=${encodeURIComponent('Hi Emmanuel, I found your portfolio and would like to discuss a project.')}`
 
 function ScrollProgress() {
   const [progress, setProgress] = useState(0)
@@ -80,7 +86,7 @@ function App() {
             <div className="hero-socials" aria-label="Social profiles">
               <a href="https://github.com/GlitchingghosT" target="_blank" rel="noreferrer"><GithubIcon />GitHub</a>
               <a href="https://www.linkedin.com/in/emmanuel-nwachinemere-b166aa234/" target="_blank" rel="noreferrer"><LinkedinIcon />LinkedIn</a>
-              <a href="mailto:nwachinemereemmanuel43@gmail.com"><MailIcon />Email</a>
+              <a href={gmailHref} target="_blank" rel="noreferrer"><MailIcon />Gmail</a>
             </div>
             <a className="hero-scroll-cue" href="#work">Selected work <span aria-hidden="true">↓</span></a>
           </div>
@@ -140,7 +146,7 @@ function App() {
                     <p>I pay attention to the parts that are easy to skip in a demo: useful errors, loading states, validation, ownership checks, keyboard access, mobile layouts, and code I can still understand later.</p>
                   </div>
                   <div className="about-links">
-                    <a href="mailto:nwachinemereemmanuel43@gmail.com">Email me <ArrowUpRight size={16} /></a>
+                    <a href={gmailHref} target="_blank" rel="noreferrer">Email me on Gmail <ArrowUpRight size={16} /></a>
                     <a href="/resume/Emmanuel_Nwachinemere_Full_Stack_Developer_ATS_CV.pdf" download>Download ATS résumé <DownloadIcon size={16} /></a>
                   </div>
                 </div>
@@ -211,9 +217,20 @@ function App() {
             <Reveal>
               <p className="mono-label">{liveActivityEnabled ? '05' : '04'} / Contact</p>
               <h2 id="contact-title">Have a product to build or a team I could help?</h2>
-              <p>Tell me what you are working on, where it is stuck, and what a good outcome looks like.</p>
+              <p>Tell me what you are working on, where it is stuck, and what a good outcome looks like. Reach me directly through Gmail, WhatsApp, or a phone call.</p>
+              <div className="contact-details" aria-label="Direct contact details">
+                <a href={gmailHref} target="_blank" rel="noreferrer">
+                  <MailIcon />
+                  <span><small>Gmail</small><strong>{email}</strong></span>
+                </a>
+                <a href={phoneHref}>
+                  <PhoneIcon />
+                  <span><small>Phone</small><strong>{phoneDisplay}</strong></span>
+                </a>
+              </div>
               <div className="contact-actions">
-                <a className="button button-primary" href="mailto:nwachinemereemmanuel43@gmail.com">Start a conversation <MailIcon /></a>
+                <a className="button button-primary" href={whatsappHref} target="_blank" rel="noreferrer">Message on WhatsApp <MessageIcon /></a>
+                <a className="button button-quiet" href={gmailHref} target="_blank" rel="noreferrer">Open Gmail <MailIcon /></a>
                 <a className="button button-quiet" href="https://www.linkedin.com/in/emmanuel-nwachinemere-b166aa234/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight /></a>
               </div>
             </Reveal>
