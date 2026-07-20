@@ -7,7 +7,8 @@ import { LiveActivity } from './components/LiveActivity'
 import { PersonalSection } from './components/PersonalSection'
 import { ProjectCard } from './components/ProjectCard'
 import { Reveal } from './components/Reveal'
-import { principles, projects, skillGroups } from './data/portfolio'
+import { SkillsCarousel } from './components/SkillsCarousel'
+import { principles, projects } from './data/portfolio'
 import { liveActivityEnabled } from './config'
 
 const email = 'nwachinemereemmanuel43@gmail.com'
@@ -199,14 +200,7 @@ function App() {
               <p className="mono-label">What I work with</p>
               <h3>A focused stack, used across the full product.</h3>
             </div>
-            <div className="skill-groups">
-              {skillGroups.map((group) => (
-                <div className="skill-group" key={group.label}>
-                  <h4>{group.label}</h4>
-                  <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
-                </div>
-              ))}
-            </div>
+            <SkillsCarousel />
           </Reveal>
         </section>
 

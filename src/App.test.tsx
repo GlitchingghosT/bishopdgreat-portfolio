@@ -87,4 +87,25 @@ describe('portfolio', () => {
     expect(localStorage.getItem('bishopdgreat-theme')).toBe('light')
     expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeInTheDocument()
   })
+
+  it('shows the skills carousel and allows its motion to be paused', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const carousel = screen.getByRole('region', { name: 'Core technologies' })
+    const toggle = screen.getByRole('button', { name: 'Pause motion' })
+
+    expect(carousel).toHaveAttribute('tabindex', '0')
+    const carouselSkills = [...carousel.querySelectorAll('.skill-chip')].map((item) => item.textContent)
+    expect(carouselSkills).toHaveLength(32)
+    expect(carouselSkills.filter((skill) => skill === 'React')).toHaveLength(2)
+    expect(carouselSkills.filter((skill) => skill === 'Node.js')).toHaveLength(2)
+    expect(screen.getByText(/REST APIs/)).toBeInTheDocument()
+    expect(toggle).toHaveAttribute('aria-pressed', 'false')
+
+    await user.click(toggle)
+
+    expect(screen.getByRole('button', { name: 'Play motion' })).toHaveAttribute('aria-pressed', 'true')
+    expect(carousel.querySelector('.skills-carousel-track')).toHaveClass('is-paused')
+  })
 })

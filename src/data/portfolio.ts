@@ -53,21 +53,6 @@ export const projects: Project[] = [
   },
 ]
 
-export const skillGroups = [
-  {
-    label: 'Frontend',
-    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Vite'],
-  },
-  {
-    label: 'Backend & data',
-    items: ['Node.js', 'Express', 'REST APIs', 'MongoDB', 'Mongoose', 'Authentication'],
-  },
-  {
-    label: 'Quality & delivery',
-    items: ['Vitest', 'Supertest', 'Accessibility', 'Git', 'GitHub', 'Vercel', 'Netlify'],
-  },
-]
-
 export const principles = [
   {
     number: '01',
