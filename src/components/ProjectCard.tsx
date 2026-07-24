@@ -23,6 +23,17 @@ function ArchitectureVisual() {
   )
 }
 
+function GeneratedProjectVisual({ project }: { project: Project }) {
+  return (
+    <div className="generated-project-visual" aria-label={`${project.title} project preview`}>
+      <div className="generated-project-grid" aria-hidden="true" />
+      <span className="generated-project-label">PROJECT / {project.slug}</span>
+      <strong>{project.title}</strong>
+      <span>{project.stack.slice(0, 3).join(' · ')}</span>
+    </div>
+  )
+}
+
 export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <Reveal
@@ -34,8 +45,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <div className="project-visual">
           {project.image ? (
             <img src={project.image} alt={project.imageAlt} loading="eager" width="1200" height="800" />
-          ) : (
+          ) : project.visual === 'taskduty-architecture' ? (
             <ArchitectureVisual />
+          ) : (
+            <GeneratedProjectVisual project={project} />
           )}
           <div className="project-visual-shade" aria-hidden="true" />
           {project.status && <span className="project-status"><span className="status-dot" />{project.status}</span>}

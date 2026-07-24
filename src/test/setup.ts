@@ -2,8 +2,6 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { afterEach } from 'vitest'
 
-afterEach(() => cleanup())
-
 class IntersectionObserverMock implements IntersectionObserver {
   readonly root = null
   readonly rootMargin = '0px'
@@ -22,20 +20,24 @@ class IntersectionObserverMock implements IntersectionObserver {
   }
 }
 
-Object.defineProperty(window, 'IntersectionObserver', {
-  configurable: true,
-  writable: true,
-  value: IntersectionObserverMock,
-})
+if (typeof window !== 'undefined') {
+  afterEach(() => cleanup())
 
-Object.defineProperty(window, 'requestAnimationFrame', {
-  configurable: true,
-  writable: true,
-  value: (callback: FrameRequestCallback) => window.setTimeout(() => callback(performance.now()), 0),
-})
+  Object.defineProperty(window, 'IntersectionObserver', {
+    configurable: true,
+    writable: true,
+    value: IntersectionObserverMock,
+  })
 
-Object.defineProperty(window, 'cancelAnimationFrame', {
-  configurable: true,
-  writable: true,
-  value: (id: number) => window.clearTimeout(id),
-})
+  Object.defineProperty(window, 'requestAnimationFrame', {
+    configurable: true,
+    writable: true,
+    value: (callback: FrameRequestCallback) => window.setTimeout(() => callback(performance.now()), 0),
+  })
+
+  Object.defineProperty(window, 'cancelAnimationFrame', {
+    configurable: true,
+    writable: true,
+    value: (id: number) => window.clearTimeout(id),
+  })
+}
