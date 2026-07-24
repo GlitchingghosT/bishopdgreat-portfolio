@@ -46,6 +46,26 @@ npm run preview
 
 The deployable output is written to `dist/`.
 
+## Add a project
+
+Use the self-service admin form at `/admin/projects`, or open the repository's **Add portfolio project** issue form directly. Both routes create a GitHub-verified submission, run owner-only validation, and post a preview. Comment `/publish` on an approved issue to run the full checks and add it to the catalogue.
+
+The local command remains available for maintenance:
+
+```bash
+npm run project:add -- --repo https://github.com/OWNER/REPOSITORY
+```
+
+The intake process infers safe public metadata but leaves personal contribution and ordering for review. Local drafts can be validated and published with:
+
+```bash
+npm run project:validate
+npm run project:publish -- PROJECT-SLUG --confirm
+npm run check
+```
+
+See [docs/PROJECTS.md](./docs/PROJECTS.md) for the self-service flow, schema, optional fields, screenshot handling, safeguards, and release workflow.
+
 ## Live integrations
 
 WakaTime uses a safe public JSON share; Spotify uses server-only Netlify environment variables. See [docs/INTEGRATIONS.md](./docs/INTEGRATIONS.md) for the exact setup and authorization steps. Never commit `.env.local` or expose Spotify credentials through `VITE_` variables.

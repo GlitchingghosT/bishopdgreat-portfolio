@@ -1,0 +1,46 @@
+name: Preview portfolio project
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: project-preview-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: >-
+      github.actor == github.repository_owner &&
+      contains(github.event.issue.labels.*.name, 'project-submission')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out portfolio
+        uses: actions/checkout@v5
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate submission and create preview
+        id: preview
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/process-project-issue.mjs --mode preview
+
+      - name: Post preview on issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file .project-submission-preview.md

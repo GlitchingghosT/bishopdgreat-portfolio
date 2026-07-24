@@ -147,6 +147,12 @@
 .architecture-link { color: var(--violet); font: 1.1rem 'Geist Mono', monospace; }
 .architecture-auth { position: relative; z-index: 1; width: fit-content; display: flex; align-items: center; gap: 9px; margin: 28px auto 0; padding: 9px 12px; color: var(--text-soft); border: 1px solid var(--border); border-radius: 7px; background: rgba(126,91,255,.06); font: .62rem 'Geist Mono', monospace; }
 
+.generated-project-visual { position: absolute; inset: 0; display: grid; align-content: center; gap: 13px; padding: clamp(28px, 6vw, 54px); isolation: isolate; background: radial-gradient(circle at 78% 24%, rgba(126,91,255,.18), transparent 30%), linear-gradient(145deg, #080c18, #111029); }
+.generated-project-grid { position: absolute; z-index: -1; inset: 0; opacity: .58; background-image: linear-gradient(rgba(97,219,251,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(97,219,251,.05) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(90deg, #000, transparent 90%); }
+.generated-project-label { color: var(--gold); font: 600 .65rem 'Geist Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.generated-project-visual strong { max-width: 640px; color: #f4f7fb; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .96; letter-spacing: -.055em; }
+.generated-project-visual > span:last-child { color: #b9c2d7; font: 500 .72rem 'Geist Mono', monospace; }
+
 .about-section { position: relative; border-block: 1px solid var(--border-soft); background: rgba(255,255,255,.018); }
 .about-section::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 10% 50%, rgba(97,219,251,.06), transparent 32%); }
 .about-grid { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(44px, 7vw, 90px); align-items: start; }

@@ -1,0 +1,81 @@
+name: Publish portfolio project
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: portfolio-project-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.actor == github.repository_owner &&
+      github.event.comment.body == '/publish' &&
+      contains(github.event.issue.labels.*.name, 'project-submission')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out portfolio
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prepare canonical project record
+        id: project
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/process-project-issue.mjs --mode publish
+
+      - name: Verify portfolio
+        run: npm run check
+
+      - name: Commit project
+        env:
+          PROJECT_TITLE: ${{ steps.project.outputs.title }}
+        run: |
+          git add content/projects.json
+          if git diff --cached --quiet; then
+            echo 'No project catalogue change was produced.' >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "content: add ${PROJECT_TITLE} to portfolio"
+          git push origin main
+
+      - name: Confirm publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PROJECT_TITLE: ${{ steps.project.outputs.title }}
+        run: |
+          printf 'Published **%s** to the portfolio catalogue. The production deployment will follow the repository deployment workflow.\n' "$PROJECT_TITLE" > .project-published.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file .project-published.md
+          gh issue close "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
+
+      - name: Report failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          printf 'Publication failed safely; no portfolio commit was pushed. Review the workflow run: %s\n' "$RUN_URL" > .project-failed.md
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file .project-failed.md

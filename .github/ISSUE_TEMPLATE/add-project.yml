@@ -1,0 +1,98 @@
+name: Add portfolio project
+description: Submit a repository for validated portfolio publication.
+title: "[Project]: "
+labels:
+  - project-submission
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit one public GitHub repository. Automation will inspect public metadata, validate the proposed project record, and post a preview. Nothing is published until the repository owner comments `/publish`.
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+      description: The public GitHub repository to inspect.
+      placeholder: https://github.com/GlitchingghosT/project-name
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Project title
+      description: Optional. Leave blank to use the repository name.
+      placeholder: Project display name
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Optional. Leave blank to review the public repository description.
+      placeholder: What problem does this project solve?
+
+  - type: textarea
+    id: contribution
+    attributes:
+      label: What I built
+      description: State your personal contribution. Do not include invented metrics or unverified claims.
+      placeholder: I built...
+    validations:
+      required: true
+
+  - type: input
+    id: technologies
+    attributes:
+      label: Technologies
+      description: Optional comma-separated override. Leave blank to review detected topics and languages.
+      placeholder: React, TypeScript, Express
+
+  - type: input
+    id: live
+    attributes:
+      label: Live URL
+      description: Optional HTTPS deployment URL. Leave blank to use the repository homepage when available.
+      placeholder: https://project.example.com
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - Live
+        - Deployment ready
+        - In development
+        - Source available
+        - Archived
+    validations:
+      required: true
+
+  - type: input
+    id: order
+    attributes:
+      label: Portfolio order
+      description: A unique positive number. Review current projects before choosing.
+      placeholder: "5"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: featured
+    attributes:
+      label: Featured project
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I confirm that the contribution and project details are accurate.
+          required: true
+        - label: I understand that I must review the generated preview and comment `/publish` before the portfolio changes.
+          required: true
