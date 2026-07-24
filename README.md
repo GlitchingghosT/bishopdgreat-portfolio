@@ -48,7 +48,7 @@ The deployable output is written to `dist/`.
 
 ## Add a project
 
-Use the self-service admin form at `/admin/projects`, or open the repository's **Add portfolio project** issue form directly. Both routes create a GitHub-verified submission, run owner-only validation, and post a preview. Comment `/publish` on an approved issue to run the full checks and add it to the catalogue.
+Use the [live project admin](https://bishopdgreat.netlify.app/admin/projects), or open the repository's [Add portfolio project issue form](https://github.com/GlitchingghosT/bishopdgreat-portfolio/issues/new?template=add-project.yml) directly. Both routes create a GitHub-verified submission, run owner-only validation, and post a preview. Comment `/publish` on an approved issue to run the full checks and add it to the catalogue.
 
 The local command remains available for maintenance:
 
